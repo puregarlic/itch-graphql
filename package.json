@@ -1,0 +1,13 @@
+{
+  "name": "itch-graphql",
+  "version": "0.0.0",
+  "description": "GraphQL server/types and resolvers for the itch.io API",
+  "main": "index.js",
+  "module": "main.js",
+  "repository": "git@github.com:puregarlic/itch-graphql.git",
+  "author": "Graham Barber <grahammbarber@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "esm": "^3.0.20"
+  }
+}
