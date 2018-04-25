@@ -3,17 +3,7 @@ import micro, { send } from 'micro'
 import { get, post, router } from 'microrouter'
 import { makeExecutableSchema } from 'graphql-tools'
 
-const typeDefs = `
-  type Query {
-    hello(name: String): String!
-  }
-`
-
-const resolvers = {
-  Query: {
-    hello: (_, { name }) => `Hello ${name || 'World'}`
-  }
-}
+import { typeDefs, resolvers } from './types'
 
 const schema = makeExecutableSchema({ typeDefs, resolvers })
 
@@ -36,4 +26,4 @@ const server = function (port, graphiql = true) {
   })
 }
 
-export { server }
+export { server, typeDefs, resolvers }
