@@ -1,4 +1,4 @@
-type Purchase {
+const typeDefs = `type Purchase {
   id: ID
   donation: Boolean
   email: String
@@ -9,3 +9,8 @@ type Purchase {
   saleRate: Float
   gameId: Int
 }
+`
+
+const resolvers = {}
+
+export { typeDefs, resolvers }

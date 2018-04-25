@@ -1,4 +1,4 @@
-type User {
+const typeDefs = `type User {
   id: ID
   username: String
   gamer: Boolean
@@ -7,4 +7,8 @@ type User {
   url: String
   pressUser: Boolean
   developer: Boolean
-}
+}`
+
+const resolvers = {}
+
+export { typeDefs, resolvers }

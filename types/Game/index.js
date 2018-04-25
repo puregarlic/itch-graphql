@@ -1,4 +1,4 @@
-type Game {
+const typeDefs = `type Game {
   id: ID!
   purchasesCount: Int!
   downloadsCount: Int!
@@ -22,3 +22,8 @@ type Game {
   shortText: String
   type: String!
 }
+`
+
+const resolvers = {}
+
+export { typeDefs, resolvers }
