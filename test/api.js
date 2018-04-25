@@ -7,6 +7,23 @@ const headers = {
   Authorization: `Bearer ${process.env.ITCH_TOKEN}`
 }
 
+const buildParams = (url, downloadKey = true) => {
+  let params = ''
+  if (process.env.USER_ID || process.env.EMAIL || process.env.DOWNLOAD_KEY) {
+    let base = '?'
+    params = base.concat(
+      process.env.USER_ID ? `user_id=${process.env.USER_ID}` : '',
+      process.env.EMAIL ? `email=${process.env.EMAIL}` : '',
+      downloadKey
+        ? process.env.DOWNLOAD_KEY
+          ? `download_key=${process.env.DOWNLOAD_KEY}`
+          : ''
+        : ''
+    )
+  }
+  return `${url}${params}`
+}
+
 test('returns scope info', async t => {
   const res = await request({
     method: 'GET',
@@ -101,21 +118,6 @@ test('returns download key', async t => {
     'cover_url'
   ].sort()
 
-  const buildParams = url => {
-    let params = ''
-    if (process.env.USER_ID || process.env.EMAIL || process.env.DOWNLOAD_KEY) {
-      let base = '?'
-      params = base.concat(
-        process.env.USER_ID ? `user_id=${process.env.USER_ID}` : '',
-        process.env.EMAIL ? `email=${process.env.EMAIL}` : '',
-        process.env.DOWNLOAD_KEY
-          ? `download_key=${process.env.DOWNLOAD_KEY}`
-          : ''
-      )
-    }
-    return `${url}${params}`
-  }
-
   const res = await request({
     method: 'GET',
     url: buildParams(
@@ -134,5 +136,38 @@ test('returns download key', async t => {
       t.true(rootKeys.has(key))
     }
     t.deepEqual(Object.keys(res.body.owner).sort(), ownerKeys)
+  }
+})
+
+test('returns purchase info', async t => {
+  const keys = new Set([
+    'donation',
+    'id',
+    'email',
+    'created_at',
+    'source',
+    'currency',
+    'price',
+    'sale_rate',
+    'game_id'
+  ])
+
+  const res = await request({
+    method: 'GET',
+    url: buildParams(
+      `https://itch.io/api/1/key/game/${process.env.GAME_ID}/purchases`,
+      false
+    ),
+    headers
+  }).use(plugins.parse('json'))
+
+  if (Array.isArray(res.body.purchases)) {
+    for (let purchase of res.body.purchases) {
+      for (let key of Object.key(purchase)) {
+        t.true(keys.has(key))
+      }
+    }
+  } else {
+    t.deepEqual(res.body.purchases, {})
   }
 })
