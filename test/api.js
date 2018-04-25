@@ -80,3 +80,59 @@ test('returns games info', async t => {
     t.deepEqual(Object.keys(game.user).sort(), userKeys)
   }
 })
+
+test('returns download key', async t => {
+  const rootKeys = [
+    'id',
+    'created_at',
+    'downloads',
+    'key',
+    'game_id',
+    'owner'
+  ].sort()
+  const ownerKeys = [
+    'display_name',
+    'gamer',
+    'username',
+    'id',
+    'url',
+    'press_user',
+    'developer',
+    'cover_url'
+  ].sort()
+
+  const buildParams = url => {
+    let params = ''
+    if (process.env.USER_ID || process.env.EMAIL || process.env.DOWNLOAD_KEY) {
+      let base = '?'
+      params = base.concat(
+        process.env.USER_ID ? `user_id=${process.env.USER_ID}` : '',
+        process.env.EMAIL ? `email=${process.env.EMAIL}` : '',
+        process.env.DOWNLOAD_KEY
+          ? `download_key=${process.env.DOWNLOAD_KEY}`
+          : ''
+      )
+    }
+    return `${url}${params}`
+  }
+
+  const res = await request({
+    method: 'GET',
+    url: buildParams(
+      `https://itch.io/api/1/key/game/${process.env.GAME_ID}/download_keys`
+    ),
+    headers
+  }).use(plugins.parse('json'))
+
+  if (res.body.errors) {
+    t.is(
+      res.body.errors['0'],
+      'no download key found' || 'invalid download key'
+    )
+  } else {
+    for (let key of Object.keys(res.body.download_key)) {
+      t.true(rootKeys.has(key))
+    }
+    t.deepEqual(Object.keys(res.body.owner).sort(), ownerKeys)
+  }
+})
