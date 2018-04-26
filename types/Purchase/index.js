@@ -11,6 +11,4 @@ const typeDefs = `type Purchase {
 }
 `
 
-const resolvers = {}
-
-export { typeDefs, resolvers }
+export { typeDefs }

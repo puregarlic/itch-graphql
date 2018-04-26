@@ -1,15 +1,9 @@
 import { request, plugins } from 'popsicle'
 
-import { typeDefs as userType, resolvers as userResolvers } from './User'
-import { typeDefs as gameType, resolvers as gameResolvers } from './Game'
-import {
-  typeDefs as purchaseType,
-  resolvers as purchaseResolvers
-} from './Purchase'
-import {
-  typeDefs as downloadKeyType,
-  resolvers as downloadKeyResolvers
-} from './DownloadKey'
+import { typeDefs as userType } from './User'
+import { typeDefs as gameType } from './Game'
+import { typeDefs as purchaseType } from './Purchase'
+import { typeDefs as downloadKeyType } from './DownloadKey'
 
 const scopeType = `type Scopes {
   scopes: [String]
@@ -115,11 +109,7 @@ const resolvers = {
           return res.body.download_key
         })
     }
-  },
-  ...userResolvers,
-  ...gameResolvers,
-  ...purchaseResolvers,
-  ...downloadKeyResolvers
+  }
 }
 
 export { typeDefs, resolvers }

@@ -9,6 +9,4 @@ const typeDefs = `type User {
   developer: Boolean
 }`
 
-const resolvers = {}
-
-export { typeDefs, resolvers }
+export { typeDefs }

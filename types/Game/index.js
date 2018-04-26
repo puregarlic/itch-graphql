@@ -24,6 +24,4 @@ const typeDefs = `type Game {
 }
 `
 
-const resolvers = {}
-
-export { typeDefs, resolvers }
+export { typeDefs }

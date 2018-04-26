@@ -8,6 +8,4 @@ const typeDefs = `type DownloadKey {
 }
 `
 
-const resolvers = {}
-
-export { typeDefs, resolvers }
+export { typeDefs }
