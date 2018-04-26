@@ -1,3 +1,5 @@
+import { request, plugins } from 'popsicle'
+
 import { typeDefs as userType, resolvers as userResolvers } from './User'
 import { typeDefs as gameType, resolvers as gameResolvers } from './Game'
 import {
@@ -9,10 +11,15 @@ import {
   resolvers as downloadKeyResolvers
 } from './DownloadKey'
 
+const scopeType = `type Scopes {
+  scopes: [String]
+  expiresAt: String
+}`
+
 const typeDefs = [
   `type Query {
   # Returns information about the enabled API key/JWT's scopes
-  info: [String]
+  info: Scopes
   # Returns the profile of the authenticated user
   me: User
   # Returns the games of the authenticated user
@@ -24,13 +31,22 @@ const typeDefs = [
 }`,
   userType,
   gameType,
+  scopeType,
   purchaseType,
   downloadKeyType
 ]
 
 const resolvers = {
   Query: {
-    info (_, args, context) {},
+    info (_, args, context) {
+      return request({
+        method: 'GET',
+        url: 'https://itch.io/api/1/key/credentials/info',
+        headers: {
+          Authorization: context.authorization
+        }
+      }).use(plugins.parse('json'))
+    },
     me (_, args, context) {},
     games (_, args, context) {},
     purchases (_, args, context) {},
