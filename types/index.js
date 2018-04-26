@@ -60,7 +60,19 @@ const resolvers = {
           return res.body.user
         })
     },
-    games (_, args, context) {},
+    games (_, args, context) {
+      return request({
+        method: 'GET',
+        url: 'https://itch.io/api/1/key/my-games',
+        headers: {
+          Authorization: context.authorization
+        }
+      })
+        .use(plugins.parse('json'))
+        .then(res => {
+          return res.body.games
+        })
+    },
     purchases (_, args, context) {},
     downloadKey (_, args, context) {}
   },
