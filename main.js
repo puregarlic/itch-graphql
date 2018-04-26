@@ -7,7 +7,15 @@ import { typeDefs, resolvers } from './types'
 
 const schema = makeExecutableSchema({ typeDefs, resolvers })
 
-const graphqlHandler = microGraphql({ schema })
+const graphqlHandler = microGraphql((req, res) => {
+  return {
+    schema,
+    context: {
+      authorization:
+        req.headers.authorization || `Bearer ${process.env.ITCH_TOKEN}`
+    }
+  }
+})
 const graphiqlHandler = microGraphiql({ endpointURL: '/graphql' })
 
 const server = function (port, graphiql = true) {
