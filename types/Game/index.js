@@ -1,25 +1,25 @@
 const typeDefs = `type Game {
   id: ID!
-  purchasesCount: Int!
-  downloadsCount: Int!
-  osx: Boolean!
-  android: Boolean!
-  linux: Boolean!
-  windows: Boolean!
+  purchases_count: Int!
+  downloads_count: Int!
+  p_osx: Boolean!
+  p_android: Boolean!
+  p_linux: Boolean!
+  p_windows: Boolean!
   published: Boolean!
-  publishedAt: String
-  viewsCount: Int!
+  published_at: String
+  views_count: Int!
   url: String!
-  canBeBought: Boolean!
-  inPressSystem: Boolean!
+  can_be_bought: Boolean!
+  in_press_system: Boolean!
   user: User!
-  hasDemo: Boolean!
+  has_demo: Boolean!
   title: String!
-  createdAt: String!
-  coverUrl: String!
-  minPrice: Float!
+  created_at: String!
+  cover_url: String!
+  min_price: Float!
   classification: String!
-  shortText: String
+  short_text: String
   type: String!
 }
 `

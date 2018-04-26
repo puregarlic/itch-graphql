@@ -1,9 +1,9 @@
 const typeDefs = `type DownloadKey {
   id: ID
-  createdAt: String
+  created_at: String
   downloads: Int
   key: String
-  gameId: Int
+  game_id: Int
   owner: User
 }
 `

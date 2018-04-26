@@ -2,10 +2,10 @@ const typeDefs = `type User {
   id: ID
   username: String
   gamer: Boolean
-  displayName: String
-  coverUrl: String
+  display_name: String
+  cover_url: String
   url: String
-  pressUser: Boolean
+  press_user: Boolean
   developer: Boolean
 }`
 
