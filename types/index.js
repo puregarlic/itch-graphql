@@ -100,7 +100,21 @@ const resolvers = {
           return res.body.purchases
         })
     },
-    downloadKey (_, args, context) {}
+    downloadKey (_, args, context) {
+      return request({
+        method: 'GET',
+        url: `https://itch.io/api/1/key/game/${
+          args.gameId
+        }/download_keys${buildParams(args.userId, args.email, args.key)}`,
+        headers: {
+          Authorization: context.authorization
+        }
+      })
+        .use(plugins.parse('json'))
+        .then(res => {
+          return res.body.download_key
+        })
+    }
   },
   ...userResolvers,
   ...gameResolvers,
