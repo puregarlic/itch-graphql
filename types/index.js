@@ -25,9 +25,9 @@ const typeDefs = [
   # Returns the games of the authenticated user
   games: [Game]
   # Returns the purchases of a game for a given user/email
-  purchases(game: Int!, userId: Int, email: String): [Purchase]
+  purchases(gameId: Int!, userId: Int, email: String): [Purchase]
   # Returns a game's download key for a given user/email/key ID
-  downloadKey(game: Int!, userId: Int, email: String, key: String): DownloadKey
+  downloadKey(gameId: Int!, userId: Int, email: String, key: String): DownloadKey
 }`,
   userType,
   gameType,
@@ -35,6 +35,18 @@ const typeDefs = [
   purchaseType,
   downloadKeyType
 ]
+
+const buildParams = (user, email, downloadKey) => {
+  let params = ''
+  if (user || email || downloadKey) {
+    params = '?'.concat(
+      user ? `user_id=${user}` : '',
+      email ? `email=${email}` : '',
+      downloadKey ? `download_key=${downloadKey}` : ''
+    )
+  }
+  return params
+}
 
 const resolvers = {
   Query: {
@@ -73,7 +85,21 @@ const resolvers = {
           return res.body.games
         })
     },
-    purchases (_, args, context) {},
+    purchases (_, args, context) {
+      return request({
+        method: 'GET',
+        url: `https://itch.io/api/1/key/game/${
+          args.gameId
+        }/download_keys${buildParams(args.userId, args.email)}`,
+        headers: {
+          Authorization: context.authorization
+        }
+      })
+        .use(plugins.parse('json'))
+        .then(res => {
+          return res.body.purchases
+        })
+    },
     downloadKey (_, args, context) {}
   },
   ...userResolvers,
