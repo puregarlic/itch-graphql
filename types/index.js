@@ -90,7 +90,7 @@ const resolvers = {
         method: 'GET',
         url: `https://itch.io/api/1/key/game/${
           args.gameId
-        }/download_keys${buildParams(args.userId, args.email)}`,
+        }/purchases${buildParams(args.userId, args.email)}`,
         headers: {
           Authorization: context.authorization
         }
