@@ -13,7 +13,7 @@ import {
 
 const scopeType = `type Scopes {
   scopes: [String]
-  expiresAt: String
+  expires_at: String
 }`
 
 const typeDefs = [
