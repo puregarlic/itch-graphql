@@ -5,6 +5,7 @@
   "main": "index.js",
   "module": "main.js",
   "scripts": {
+    "release": "semantic-release",
     "test": "ava test/",
     "dev": "nodemon dev.js",
     "precommit": "lint-staged",
