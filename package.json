@@ -13,12 +13,8 @@
   },
   "lint-staged": {
     "**/*.js": [
+      "prettier-standard",
       "standard --fix",
-      "prettier-standard",
-      "git add"
-    ],
-    "**/*.{gql,graphql}": [
-      "prettier-standard",
       "git add"
     ]
   },
