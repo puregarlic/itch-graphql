@@ -41,6 +41,8 @@ const { server } = require('itch-graphql')
 
 This is pretty simple. All you need to do is import the server and call it with the port and a boolean for GraphiQL. Internally, it's using `micro`, `apollo-server-micro`, and `microrouter`.
 
+For authorization, it's up to you whether to include a `ItchToken: <your token here>` HTTP header or to set up an `ITCH_TOKEN` environment variable. We recommend the latter.
+
 ```js
 import { server } from 'itch-graphql'
 
@@ -85,9 +87,9 @@ const graphqlHandler = expressGraphql((req, res) => {
     schema,
     // Add our Itch token for authorization
     context: {
-      // You can set this up however you like, as long as this property ultimately says `Bearer <token>`
-      authorization:
-        req.headers.authorization || `Bearer ${process.env.ITCH_TOKEN}`
+      // You can set this up however you like
+      itchToken:
+        process.env.ITCH_TOKEN || req.headers.ItchToken
     }
   }
 })
@@ -126,7 +128,7 @@ npm install
 npm run dev
 ```
 
-And you're good to go. We recommend using [GraphQL Playground](https://github.com/graphcool/graphql-playground) to test the API, because you can pass HTTP Headers from the application. GraphiQL is only great if you're handing the token to context from your server; the shipped server currently prefers the token from an `"Authorization": "Bearer <your token here>"` header.
+And you're good to go. We recommend using [GraphQL Playground](https://github.com/graphcool/graphql-playground) to test the API, because you can pass HTTP Headers from the application. GraphiQL is only great if you're handing the token to context via an `ITCH_TOKEN` environment variable.
 
 If you make any changes to the source code, the server will autoreload thanks to [nodemon](https://www.npmjs.com/package/nodemon).
 
