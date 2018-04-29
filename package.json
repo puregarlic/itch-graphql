@@ -23,6 +23,18 @@
       "esm"
     ]
   },
+  "keywords": [
+    "itch",
+    "graphql",
+    "api wrapper",
+    "unofficial",
+    "api",
+    "wrapper"
+  ],
+  "homepage": "https://github.com/puregarlic/itch-graphql#README",
+  "bugs": {
+    "url": "https://github.com/puregarlic/itch-graphql/issues"
+  },
   "repository": "git@github.com:puregarlic/itch-graphql.git",
   "author": "Graham Barber <grahammbarber@gmail.com>",
   "license": "MIT",
