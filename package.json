@@ -1,7 +1,7 @@
 {
   "name": "itch-graphql",
   "version": "0.0.0",
-  "description": "GraphQL server/types and resolvers for the itch.io API",
+  "description": "Unofficial GraphQL server/types and resolvers for the itch.io API",
   "main": "index.js",
   "module": "main.js",
   "scripts": {
