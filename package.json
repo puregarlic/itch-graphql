@@ -13,8 +13,8 @@
   },
   "lint-staged": {
     "**/*.js": [
-      "standard --fix",
       "prettier-standard",
+      "standard --fix",
       "git add"
     ]
   },
