@@ -34,7 +34,7 @@ const typeDefs = `type Game {
   # Timestamp when the game was registered on Itch
   created_at: String!
   # The URL for the game's cover image. Great for thumbnails!
-  cover_url: String!
+  cover_url: String
   # The least amount of money you can throw for this game
   min_price: Float!
   # What the result is labelled as
