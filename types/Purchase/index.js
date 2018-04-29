@@ -1,6 +1,6 @@
 const typeDefs = `type Purchase {
   # Numeric ID of the purchase
-  id: ID
+  id: Int!
   # Was this out of the kindness of their heart?
   donation: Boolean
   # Email associated with the purchase

@@ -1,6 +1,6 @@
 const typeDefs = `type DownloadKey {
   # Numeric ID of the download key
-  id: ID
+  id: ID!
   # Creation timestamp
   created_at: String
   # Number of downlaods associated with the key

@@ -1,6 +1,6 @@
 const typeDefs = `type Game {
   # Unique numeric ID of the game
-  id: ID!
+  id: Int!
   # Number of purchases
   purchases_count: Int!
   # Number of downloads

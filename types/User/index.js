@@ -1,6 +1,6 @@
 const typeDefs = `type User {
   # The user's numeric ID
-  id: ID
+  id: Int!
   # The user's username
   username: String
   # Whether or not the account has purchased games
