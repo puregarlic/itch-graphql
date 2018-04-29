@@ -11,8 +11,9 @@ const graphqlHandler = microGraphql((req, res) => {
   return {
     schema,
     context: {
-      authorization:
-        req.headers.authorization || `Bearer ${process.env.ITCH_TOKEN}`
+      itchToken: process.env.ITCH_TOKEN
+        ? process.env.ITCH_TOKEN
+        : req.headers.ItchToken
     }
   }
 })

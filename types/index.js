@@ -45,7 +45,7 @@ const buildParams = (user, email, downloadKey) => {
 const requestParams = ctx => ({
   method: 'GET',
   headers: {
-    Authorization: ctx.authorization
+    Authorization: `Bearer ${ctx.itchToken}`
   }
 })
 
