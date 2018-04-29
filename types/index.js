@@ -42,24 +42,25 @@ const buildParams = (user, email, downloadKey) => {
   return params
 }
 
+const requestParams = ctx => ({
+  method: 'GET',
+  headers: {
+    Authorization: ctx.authorization
+  }
+})
+
 const resolvers = {
   Query: {
     info (_, args, context) {
       return request({
-        method: 'GET',
         url: 'https://itch.io/api/1/key/credentials/info',
-        headers: {
-          Authorization: context.authorization
-        }
+        ...requestParams(context)
       }).use(plugins.parse('json'))
     },
     me (_, args, context) {
       return request({
-        method: 'GET',
         url: 'https://itch.io/api/1/key/me',
-        headers: {
-          Authorization: context.authorization
-        }
+        ...requestParams(context)
       })
         .use(plugins.parse('json'))
         .then(res => {
@@ -68,11 +69,8 @@ const resolvers = {
     },
     games (_, args, context) {
       return request({
-        method: 'GET',
         url: 'https://itch.io/api/1/key/my-games',
-        headers: {
-          Authorization: context.authorization
-        }
+        ...requestParams(context)
       })
         .use(plugins.parse('json'))
         .then(res => {
@@ -81,13 +79,10 @@ const resolvers = {
     },
     purchases (_, args, context) {
       return request({
-        method: 'GET',
         url: `https://itch.io/api/1/key/game/${
           args.gameId
         }/purchases${buildParams(args.userId, args.email)}`,
-        headers: {
-          Authorization: context.authorization
-        }
+        ...requestParams(context)
       })
         .use(plugins.parse('json'))
         .then(res => {
@@ -96,13 +91,10 @@ const resolvers = {
     },
     downloadKey (_, args, context) {
       return request({
-        method: 'GET',
         url: `https://itch.io/api/1/key/game/${
           args.gameId
         }/download_keys${buildParams(args.userId, args.email, args.key)}`,
-        headers: {
-          Authorization: context.authorization
-        }
+        ...requestParams(context)
       })
         .use(plugins.parse('json'))
         .then(res => {
