@@ -16,10 +16,6 @@
       "standard --fix",
       "prettier-standard",
       "git add"
-    ],
-    "**/*.{gql,graphql}": [
-      "prettier-standard",
-      "git add"
     ]
   },
   "ava": {
