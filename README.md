@@ -2,7 +2,7 @@
 
 # itch-graphql
 [![buddy pipeline](https://app.buddy.works/grahambarber/itch-graphql-1/pipelines/pipeline/134863/badge.svg?token=cb017d380b6e0add2b2b161933bbd1f5632c1bc67a7a2f947c825462beefdf58 "buddy pipeline")](https://app.buddy.works/grahambarber/itch-graphql-1/pipelines/pipeline/134863) [![Maintainability](https://api.codeclimate.com/v1/badges/46e48d1390604ec24062/maintainability)](https://codeclimate.com/github/puregarlic/itch-graphql/maintainability) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
-> GraphQL server and typedefs/resolvers for the itch.io API.
+> Unofficial GraphQL server and typedefs/resolvers for the itch.io API.
 
 If you've ever wanted a GraphQL wrapper around the itch.io REST API, you've come to the right place. I know this is pretty niche, but at least you have the option now.
 
